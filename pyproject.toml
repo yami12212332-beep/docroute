@@ -1,0 +1,38 @@
+[project]
+name = "docroute"
+version = "0.2.0"
+description = "Per-page adaptive OCR pipeline for Docling: native text where trustworthy, forced OCR where corrupted, plus searchable image extraction."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "docling>=2.130.0",
+    "rapidocr-onnxruntime>=1.4.4",
+    "pillow>=12.1.0",
+    "pymupdf>=1.28.2",
+    "fastapi>=0.141.1",
+    "uvicorn>=0.54.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
+api = [
+    "fastapi>=0.136.0",
+    "uvicorn[standard]>=0.49.0",
+    "python-multipart>=0.0.20",
+]
+
+[project.scripts]
+docroute = "docroute.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+package = true
+
+[tool.uv.sources]
+# none currently -- kept as a placeholder in case a pinned/custom index is
+# needed again later (e.g. if you reintroduce a Paddle-backed OCR engine)
